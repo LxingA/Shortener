@@ -21,7 +21,7 @@ function html_component_header(): string {
                 </a>
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"></ul>
                 <div class="text-end">
-                    <button data-active="0" type="button" class="btn btn-outline-light me-2" id="cksh_button_theme">
+                    <button type="button" class="btn btn-outline-light me-2" id="cksh_button_theme">
                         <i class="fa-regular fa-sun"></i>
                     </button>
                 </div>

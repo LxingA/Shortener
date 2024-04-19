@@ -30,7 +30,7 @@ function html_template(string $title,string $language = "es",string $render = ""
     for($y = 0; $y <= (count($object_global_application["option"]["\$html$"]) - 1); $y++) $html_attributes .= array_keys($object_global_application["option"]["\$html$"])[$y] . "=\"return " . ((boolval(intval(array_values($object_global_application["option"]["\$html$"])[$y]))) ? "true" : "false") . "\"" .  (($y == (count($object_global_application["option"]["\$html$"]) - 1)) ? "" : " ");
     $base = <<<EOF
     <!DOCTYPE html>
-    <html lang="$language" $html_attributes author="$html_author" version="$html_version" data-bs-theme="light">
+    <html lang="$language" $html_attributes author="$html_author" version="$html_version">
         <head>
             <link rel="dns-prefetch" href="$html_endpoint_api"/>
             <link rel="dns-prefetch" href="$html_endpoint_analytic_preconnect"/>
@@ -57,12 +57,15 @@ function html_template(string $title,string $language = "es",string $render = ""
             <script type="text/javascript">
                 /* Código Implementado por $html_author el 17/03/24 04:30AM */
                 const ck_bt_thm = document["getElementById"]("cksh_button_theme");
-                let ck_bt_thm_active = (Boolean(parseInt(ck_bt_thm["getAttribute"]("data-active"))));
+                const ck_dark_mode_bool = window["matchMedia"]("(prefers-color-scheme:dark)")["matches"];
+                document["documentElement"]["setAttribute"]("data-bs-theme",(ck_dark_mode_bool ? "dark" : "light"));
+                ck_bt_thm["setAttribute"]("data-active",ck_dark_mode_bool);
+                let ck_bt_thm_active = (Boolean(ck_bt_thm["getAttribute"]("data-active")));
                 let ck_bt_thm_class = ck_bt_thm["children"][0]["getAttribute"]("class");
                 ck_bt_thm["addEventListener"]("click",\$event$ => {
                     \$event$["preventDefault"]();
-                    ck_bt_thm_active = !ck_bt_thm_active;
                     ck_bt_thm_class = ck_bt_thm_active ? "moon" : "sun";
+                    ck_bt_thm_active = !ck_bt_thm_active;
                     ck_bt_thm["setAttribute"]("data-active",ck_bt_thm_active);
                     document["documentElement"]["setAttribute"]("data-bs-theme",(ck_bt_thm_active ? "dark" : "light"));
                     ck_bt_thm["children"][0]["setAttribute"]("class",`fa-regular fa-\${ck_bt_thm_class}`);

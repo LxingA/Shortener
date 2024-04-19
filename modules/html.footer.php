@@ -11,7 +11,7 @@
 function html_component_footer(){
     global $object_global_application;
     $current_year = date("Y",time());
-    $project_alternative = $object_global_application["project"]["alternative"][0];
+    $project_alternative = $object_global_application["project"]["alternative"][2];
     $author = $object_global_application["project"]["name"];
     $base = <<<EOF
     <div class="container">
